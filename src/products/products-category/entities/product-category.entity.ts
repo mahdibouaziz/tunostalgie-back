@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Product } from './product.entity';
+import { Product } from '../../entities/product.entity';
 
 @Entity()
-export class Discount {
+export class ProductCategory {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -12,12 +12,6 @@ export class Discount {
   @Column()
   description: string;
 
-  @Column()
-  discountPercent: number;
-
-  @Column()
-  active: boolean;
-
-  @OneToMany(() => Product, (product) => product.discount)
+  @OneToMany(() => Product, (product) => product.productCategory)
   products: Product[];
 }
