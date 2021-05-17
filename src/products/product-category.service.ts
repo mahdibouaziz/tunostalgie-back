@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProductCategoryDto } from './dto/create-product-category.dto';
@@ -15,28 +15,56 @@ export class ProductCategoryService {
   async createProductCategory(
     createProductCategoryDto: CreateProductCategoryDto,
   ): Promise<ProductCategory> {
-    return await this.productCategoryRepository.save(createProductCategoryDto);
+    try {
+      return await this.productCategoryRepository.save(
+        createProductCategoryDto,
+      );
+    } catch (error) {
+      throw new BadRequestException('Cannot save this product to the Database');
+    }
   }
 
   async findAllProductsCategory(): Promise<ProductCategory[]> {
-    return await this.productCategoryRepository.find();
+    try {
+      return await this.productCategoryRepository.find();
+    } catch (error) {
+      throw new BadRequestException('Cannot find products from the Database');
+    }
   }
 
   async findProductCategoryById(id: number): Promise<ProductCategory> {
-    return await this.productCategoryRepository.findOne(id);
+    try {
+      return await this.productCategoryRepository.findOne(id);
+    } catch (error) {
+      throw new BadRequestException(
+        'Cannot find this products or maybe invalid id',
+      );
+    }
   }
 
   async updateProductCategory(
     id: number,
     updateProductCategoryDto: UpdateProductCategoryDto,
   ) {
-    return await this.productCategoryRepository.update(
-      id,
-      updateProductCategoryDto,
-    );
+    try {
+      return await this.productCategoryRepository.update(
+        id,
+        updateProductCategoryDto,
+      );
+    } catch (error) {
+      throw new BadRequestException(
+        'Cannot Update this product or maybe invalid product id',
+      );
+    }
   }
 
   async removeProductCategory(id: number) {
-    return await this.productCategoryRepository.delete(id);
+    try {
+      return await this.productCategoryRepository.delete(id);
+    } catch (error) {
+      throw new BadRequestException(
+        'Cannot remove this product or maybe invalid id',
+      );
+    }
   }
 }
