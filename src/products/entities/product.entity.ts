@@ -14,6 +14,9 @@ export class Product {
   description: string;
 
   @Column()
+  imagePath: string;
+
+  @Column()
   price: number;
 
   @Column()

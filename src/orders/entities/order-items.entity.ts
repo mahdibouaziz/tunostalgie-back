@@ -2,6 +2,7 @@ import { Product } from 'src/products/entities/product.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -20,5 +21,6 @@ export class OrderItems {
   order: Order;
 
   @OneToOne(() => Product)
+  @JoinColumn()
   product: Product;
 }
