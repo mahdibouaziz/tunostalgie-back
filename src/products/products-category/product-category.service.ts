@@ -20,7 +20,9 @@ export class ProductCategoryService {
         createProductCategoryDto,
       );
     } catch (error) {
-      throw new BadRequestException('Cannot save this product to the Database');
+      throw new BadRequestException(
+        'Cannot save this product-category to the Database',
+      );
     }
   }
 
@@ -28,7 +30,9 @@ export class ProductCategoryService {
     try {
       return await this.productCategoryRepository.find();
     } catch (error) {
-      throw new BadRequestException('Cannot find products from the Database');
+      throw new BadRequestException(
+        'Cannot find products-category from the Database',
+      );
     }
   }
 
@@ -37,7 +41,7 @@ export class ProductCategoryService {
       return await this.productCategoryRepository.findOne(id);
     } catch (error) {
       throw new BadRequestException(
-        'Cannot find this products or maybe invalid id',
+        'Cannot find this product-category or maybe invalid id',
       );
     }
   }
@@ -53,7 +57,7 @@ export class ProductCategoryService {
       );
     } catch (error) {
       throw new BadRequestException(
-        'Cannot Update this product or maybe invalid product id',
+        'Cannot Update this product-category or maybe invalid product id',
       );
     }
   }
@@ -63,7 +67,7 @@ export class ProductCategoryService {
       return await this.productCategoryRepository.delete(id);
     } catch (error) {
       throw new BadRequestException(
-        'Cannot remove this product or maybe invalid id',
+        'Cannot remove this product-category or maybe invalid id',
       );
     }
   }

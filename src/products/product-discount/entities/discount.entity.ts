@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Product } from '../../entities/product.entity';
+import { Product } from '../../product/entities/product.entity';
 
 @Entity()
 export class Discount {
