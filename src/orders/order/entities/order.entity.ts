@@ -8,8 +8,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { OrderItems } from './order-items.entity';
-import { PayementDetails } from './payement-details.entity';
+import { OrderItems } from '../../order-items/entities/order-items.entity';
+import { PayementDetails } from '../../payement-details/entities/payement-details.entity';
 
 @Entity()
 export class Order {
@@ -18,6 +18,9 @@ export class Order {
 
   @Column()
   total: number;
+
+  @Column()
+  etat: string;
 
   @OneToMany(() => OrderItems, (orderItems) => orderItems.order)
   orderItems: OrderItems[];
